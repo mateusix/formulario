@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de email</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="header">    
+        <button id="dark-mode-toggle" class="dark-mode-btn">
+            <i class="fas fa-moon" id="moon-icon"></i>
+            <i class="fas fa-sun" id="sun-icon" style="display: none;"></i>
+        </button>
+    
+        <i class='bx bx-menu' id="menu-icon"></i>
+    
+    </header>
+
+        <section class="contact" id="contact">
+            <h2 class="heading">Enviar <span>Email</span></h2>
+            
+      
+          <form id="contact-form">
+              <div class="input-box">
+                  <input type="text" id="fullName" name="fullName" placeholder="Nome completo" required>
+                  <input type="email" id="email" name="email" placeholder="Email" required>
+              </div>
+      
+              <div class="input-box">
+
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Telefone" maxlength="15" required>
+                <input type="text" id="subject" name="subject" placeholder="Titulo" required>
+              </div>
+      
+              <textarea id="message" name="message" cols="30" rows="10" placeholder="Sua mensagem" required></textarea>
+      
+              <input type="submit" value="Enviar Mensagem" class="btn">
+          </form>
+      </section>
+         
+  <script src="script.js" ></script>
+</body>
+</html>
+
+<style>
+body.dark-mode .text-animation span::after {
+    background-color: #1e1e1e !important; 
+    border-left: 2px solid white !important; 
+}
+
+body.dark-mode .text-animation span::before {
+    color: white !important; 
+}
+body.dark-mode .header {
+    background: rgba(30, 30, 30, 0.9); 
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: rgba(210, 255, 209, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    overflow: hidden;
+    border-bottom: none; 
+}
+  
+  .logo {
+      font-size: 24px;
+      text-decoration: none;
+      color: inherit;
+  }
+  
+  .dark-mode-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+  }
+  
+  #menu-icon {
+      margin-left: 0;
+      margin-right: 20px;
+  }
+  
+  body.dark-mode {
+      --bg-color: #1e1e1e;
+      --text-color: #e0e0e0;
+      --green-color: #4CAF50;
+  }
+  
+  body.dark-mode .header,
+  body.dark-mode section,
+  body.dark-mode .projects,
+  body.dark-mode .contact {
+      border: none;
+      box-shadow: none;
+      outline: none;
+  }
+  
+  body.dark-mode .logo, 
+  body.dark-mode .dark-mode-btn {
+      color: #e0e0e0;
+  }
+  
+  body.dark-mode a {
+      color: #e0e0e0;
+  }
+  
+  body.dark-mode section, 
+  body.dark-mode .projects {
+      color: #e0e0e0;
+      background-color: #1e1e1e;
+  }
+  
+  body.dark-mode nav a {
+      color: #e0e0e0;
+  }
+
+  body.dark-mode #moon-icon {
+      display: none;
+  }
+  
+  body.dark-mode #sun-icon {
+      display: inline;
+  }
+  
+  body.dark-mode .contact h2.heading {
+      color: #e0e0e0;
+  }
+  
+  body.dark-mode .contact h2.heading span {
+      color: var(--main-color); 
+  }
+
+.translate-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-color, #000);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.translate-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: relative;
+}
+
+
+.header-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .translate-btn .translate-text {
+        display: none;
+    }
+    
+    .header-center {
+        gap: 10px;
+    }
+}
+
+  </style>
+
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.js"></script>
+
+<script>
+
+const toggleButton = document.getElementById('dark-mode-toggle');
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    if (document.body.classList.contains('dark-mode')) {
+        document.getElementById('moon-icon').style.display = 'none';
+        document.getElementById('sun-icon').style.display = 'inline';
+    } else {
+        document.getElementById('moon-icon').style.display = 'inline';
+        document.getElementById('sun-icon').style.display = 'none';
+    }
+});
+  
+
+
+function showToast(message) {
+    var toast = document.createElement("div");
+    toast.classList.add("toast");
+    toast.innerText = message;
+
+    document.body.appendChild(toast);
+
+    toast.offsetHeight;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.add("hide");
+
+        setTimeout(() => {
+            toast.remove();
+        }, 500);
+    }, 3000);
+}
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+
+        var fullName = document.getElementById('fullName').value;
+        var email = document.getElementById('email').value;
+        var phoneNumber = document.getElementById('phoneNumber').value;
+        var subject = document.getElementById('subject').value;
+        var message = document.getElementById('message').value;
+
+        var payload = {
+            service_id: "service_sr0ljsa",  // Seu Service ID
+            template_id: "template_dmv9pan",  // Seu Template ID
+            user_id: "zx0ZC3wPCC7vyPESd",  // Sua chave pública
+            template_params: {
+                fullName: fullName,
+                email: email,
+                phoneNumber: phoneNumber,
+                subject: subject,
+                message: message
+            }
+        };
+
+        fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            return response.text();  
+        })
+        .then(data => {
+            console.log("Dados recebidos da API: ", data);
+
+            try {
+                let jsonData = JSON.parse(data);
+                if (jsonData.status === 200) {
+                    showToast("Sua mensagem foi enviada com sucesso! Agradecemos o seu contato.");
+                    console.log("Sucesso:", jsonData);
+                } else {
+                    throw new Error(jsonData.text || 'Erro ao enviar a mensagem.');
+                }
+            } catch (error) {
+                console.error("Mensagem enviada com sucesso!):", error);
+                showToast("Sua mensagem foi enviada com sucesso!");
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao enviar o e-mail:", error);
+            showToast("Desculpe, ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.");
+        });
+    });
+
+
+
+    document.getElementById('phoneNumber').addEventListener('input', function(e) {
+    let cursorPos = e.target.selectionStart;
+    let inputValue = e.target.value;
+    
+    let rawValue = inputValue.replace(/\D/g, '');
+    
+    let formattedValue = '';
+    if (rawValue.length > 0) {
+        formattedValue = '(' + rawValue.substring(0, 2);
+    }
+    if (rawValue.length > 2) {
+        formattedValue += ') ' + rawValue.substring(2, 7);
+    }
+    if (rawValue.length > 7) {
+        formattedValue += '-' + rawValue.substring(7, 11);
+    }
+
+    e.target.value = formattedValue;
+    
+    let newCursorPos = cursorPos;
+    
+    if (inputValue.length < formattedValue.length) {
+
+        if (cursorPos >= 1 && cursorPos <= 3) {
+            newCursorPos = cursorPos + 1;
+        }
+        else if (cursorPos >= 4 && cursorPos <= 6) {
+            newCursorPos = cursorPos + 2;
+        }
+
+        else if (cursorPos >= 7 && cursorPos <= 11) {
+            newCursorPos = cursorPos + 1;
+        }
+    }
+
+    else if (inputValue.length > formattedValue.length) {
+
+        if (cursorPos >= 2 && cursorPos <= 4) {
+            newCursorPos = cursorPos - 1;
+        }
+        else if (cursorPos >= 5 && cursorPos <= 8) {
+            newCursorPos = cursorPos - 2;
+        }
+        else if (cursorPos >= 12) {
+            newCursorPos = cursorPos - 1;
+        }
+    }
+    
+    newCursorPos = Math.max(1, Math.min(newCursorPos, formattedValue.length));
+    e.target.setSelectionRange(newCursorPos, newCursorPos);
+});
+
+
+</script>
