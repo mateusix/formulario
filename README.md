@@ -2,6 +2,8 @@
 
 Este projeto consiste em um formulário simples de contato em HTML, CSS e JavaScript, com suporte ao modo escuro, que envia e-mails automaticamente utilizando a API gratuita do [EmailJS](https://www.emailjs.com/).
 
+https://github.com/user-attachments/assets/e182cc0d-5609-4532-ba08-5ab255a4f380
+
 ---
 
 ## 🚀 Funcionalidades
